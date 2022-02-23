@@ -218,9 +218,25 @@ d3.csv("data/iris.csv").then((data) => {
         .attr('id', "tooltip1") 
         .style("opacity", 0) 
         .attr("class", "tooltip"); 
+
+
+    // Add bars
+    const myBars = svg3.selectAll(".bar")
+        .data(data1)
+        .enter()
+          .append("rect")
+          .attr("class", "bar")
+          .attr("x", (d,i) => xScale1(i))
+          .attr("y", (d) => yScale1(d.count))
+          .attr("height", (d) => (height - margin.bottom) - yScale1(d.count))
+          .attr("width", xScale1.bandwidth())
+          .style("fill", (d) => color(d.Species))
+          .style("opacity", 0.5);
+    
                  
     
   }
+
 
   //Brushing Code---------------------------------------------------------------------------------------------
     
@@ -228,8 +244,6 @@ d3.csv("data/iris.csv").then((data) => {
   function clear() {
       svg1.call(brush1.move, null);
 
-  
-      
       //TODO: add code to clear existing brush from svg2
   }
 
