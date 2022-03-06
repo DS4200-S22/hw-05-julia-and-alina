@@ -192,9 +192,9 @@ d3.csv("data/iris.csv").then((data) => {
     // Add a barchart that shows counts of each Iris species in the iris.csv dataset
     // Hardcoded barchart data
     const data1 = [
-      {species: 'setosa', count: 50},
-      {species: 'virginica', count: 50},
-      {species: 'versicolor', count: 50}
+      {Species: 'setosa', count: 50},
+      {Species: 'virginica', count: 50},
+      {Species: 'versicolor', count: 50}
     ];
     
     xKey3 = 'Species';
@@ -216,7 +216,7 @@ d3.csv("data/iris.csv").then((data) => {
     svg3.append("g")
     .attr("transform", `translate(0,${height - margin.bottom})`) 
     .call(d3.axisBottom(x3) 
-            .tickFormat(i => data1[i].species))  
+            .tickFormat(i => data1[i].Species))  
     .attr("font-size", '20px')
     .call((g) => g.append("text")
         .attr("x", width - margin.right)
@@ -249,7 +249,7 @@ d3.csv("data/iris.csv").then((data) => {
           .attr("y", (d) => y3(d.count))
           .attr("height", (d) => (height - margin.bottom) - y3(d.count))
           .attr("width", x3.bandwidth())
-          .style("fill", (d) => color(d.species))
+          .style("fill", (d) => color(d.Species))
           .style("opacity", 0.5);             
     
   }
@@ -295,7 +295,7 @@ d3.csv("data/iris.csv").then((data) => {
     // Give bold outline to all points within the brush region in Scatterplot2 & collected names of brushed species
     myCircles2.classed("selected", function(d) {
       if (isBrushed(coords, x2(d.Sepal_Width), y2(d.Petal_Width))) {
-        setSpecies.add(d.species);
+        setSpecies.add(d.Species);
       }
       return isBrushed(coords, x2(d.Sepal_Width), y2(d.Petal_Width));
     })
@@ -307,7 +307,7 @@ d3.csv("data/iris.csv").then((data) => {
 
     // Give bold outline to all bars in bar chart with corresponding to species selected by Scatterplot2 brush
     bars.classed("selected", function(d) {
-      return setSpecies.has(d.species);
+      return setSpecies.has(d.Species);
     })
   }
 
